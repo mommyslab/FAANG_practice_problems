@@ -1,0 +1,63 @@
+/*
+vector<int> sortbyParity(A.size());
+        int even=0;// to track of index for even nums
+        int odd=0;
+        for(int i=0;i<A.size();i++)
+        {
+            if(i%2==0 && A[i]%2==0)
+            {
+                sortbyParity[i]=A[i];
+                
+            }
+            
+            
+            else if( i%2==0 && A[i]%2==1)
+            {
+                odd=i;
+                sortbyParity[i]=A[even];
+                
+            }
+            
+           else if(i%2==1&& A[i]%2==1)
+                 sortbyParity[i]=A[i];
+            else if (i%2==1 && A[i]%2==0)
+            {
+                even=i;
+                sortbyParity[i]=A[odd];
+            }
+                
+        }
+        return sortbyParity;
+        */
+class Solution {
+public:
+    vector<int> sortArrayByParityII(vector<int>& A) {
+        vector<int> even;
+        vector<int> odd;
+        vector<int> res(A.size());
+        for(int i=0;i<A.size();i++)
+        {
+            if(A[i]%2==0)
+                even.push_back(A[i]);
+            else
+                odd.push_back(A[i]);
+        }
+        int ev=0;
+        int od=0;
+        for(int i=0; i<A.size();i++)
+        {
+            if(i%2==0)
+            {
+                res[i]=even[ev];
+                ev++;
+            }
+            else
+            {
+                res[i]=odd[od];
+                od++;
+            }
+                
+        }
+        return res;
+    }
+};
