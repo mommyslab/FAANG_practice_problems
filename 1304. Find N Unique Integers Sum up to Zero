@@ -1,0 +1,29 @@
+class Solution {
+public:
+    vector<int> sumZero(int n) {
+        vector<int> res;
+        int half=n/2;
+        if(n%2==0)
+        {
+            for(int i=1;i<=half;i++)
+            {
+                res.push_back(i);
+                res.push_back(-i);
+
+            }                
+        }
+        else
+        {
+            res.push_back(0);
+            for(int i=1;i<=half;i++)
+            {
+                res.push_back(i);
+                res.push_back(-i);
+
+            }  
+            
+        }
+        return res;
+        
+    }
+};
