@@ -1,0 +1,27 @@
+class Solution {
+public:
+    string reverseWords(string s) {
+        string rev;
+        string word;
+        string delimiter=" ";
+        size_t pos=0;
+        while((pos=s.find(delimiter))!=string::npos)
+        {
+            word= s.substr(0,pos);
+            if(word.length()!=0)
+                
+            {for(int i=word.size()-1;i>=0;i--)
+            {
+                rev+=word[i];
+            }}
+                                                                    s.erase(0,word.size()+delimiter.size());
+
+             rev+=" ";   
+        }
+ 
+ 
+                for(int j=s.size()-1;j>=0;j--)
+                    rev+=s[j];
+                return rev;
+    }
+};
