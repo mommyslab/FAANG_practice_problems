@@ -1,0 +1,29 @@
+class Solution {
+public:
+    
+    
+    vector<int> partitionLabels(string S) {
+        vector<int> res;
+        
+        while(S.size()!=0)
+        {
+            string s;
+            s.push_back(S[0]);
+            for(int i=1;i<S.size();i++)
+            {
+                size_t find=s.find_first_of(S[i]);
+                if(find!=string::npos)
+                    s=S.substr(0,i+1);
+            }
+            res.push_back(s.size());
+            S=S.erase(0,s.size());
+            cout<<S.size();
+        }
+        
+        
+        
+
+        
+        return res;
+    }
+};
