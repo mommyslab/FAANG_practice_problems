@@ -1,0 +1,73 @@
+class Solution {
+public:
+    vector<int> findIntervals(vector<int> first, vector<int> second){
+        vector<int> v;
+        //[()], ([]), [(]),([)]
+        if(second[0]<=first[0] && second[1]>=first[1])
+        {
+            if(first[0]<=first[1])
+            {
+                v.push_back(first[0]);
+                v.push_back(first[1]);
+                return v;
+            }
+        }
+        if(first[0]<=second[0] && first[1]>=second[1])
+        {
+            if(second[0]<=second[1])
+            {
+                v.push_back(second[0]);
+                v.push_back(second[1]);
+                return v;
+            }
+        }
+        if(first[0]<=second[0] && first[1]<=second[1])
+        {
+            if(second[0]<=first[1])
+            {
+                v.push_back(second[0]);
+                v.push_back(first[1]);
+                return v;
+            }
+        }
+        if(second[0]<=first[0] && second[1]<=first[1])
+        {
+            if(first[0]<=second[1])
+            {
+                v.push_back(first[0]);
+                v.push_back(second[1]);
+                return v;
+            }
+        }
+        return {};
+    }
+    vector<vector<int>> intervalIntersection(vector<vector<int>>& firstList,                        vector<vector<int>>& secondList) {
+        vector<vector<int>> result;
+        int i=0;int j=0;
+    
+         while(i<firstList.size() && j<secondList.size())
+         {
+            vector<int> v= findIntervals(firstList[i],secondList[j]);
+                   if(!v.empty())
+                       result.push_back(v);
+            if(firstList[i][1]>secondList[j][1])
+            {
+                j++;
+                continue;
+            }
+            if(firstList[i][1]<secondList[j][1])
+            {
+                i++;
+                continue;
+            }
+            if(firstList[i][1]==secondList[j][1])
+            {
+                j++;
+                i++;
+                continue;
+            }
+         }
+          
+        return result;
+    }
+};
