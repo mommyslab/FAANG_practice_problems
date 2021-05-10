@@ -1,0 +1,15 @@
+class Solution {
+public:
+    vector<int> findDuplicates(vector<int>& nums) {
+        vector<int> result;
+        set<int> r;
+        for(int i=0;i<nums.size();i++)
+        {
+            pair<set<int>::iterator,bool> ret;
+            ret=r.insert(nums[i]);
+                if(ret.second==false)
+                    result.push_back(nums[i]);
+        }
+        return result;
+    }
+};
