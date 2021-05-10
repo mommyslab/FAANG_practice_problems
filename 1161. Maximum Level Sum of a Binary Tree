@@ -1,0 +1,57 @@
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
+class Solution {
+public:
+    void traverse(TreeNode* root,int level,vector<int>& sum) 
+    {
+        level++;
+        sumOfLevel(root->val,level,sum);
+        if(root->right!=NULL)
+            traverse(root->right,level,sum);
+        if(root->left!=NULL)
+            traverse(root->left,level,sum);
+    }
+    void sumOfLevel(int val,int level,vector<int>& sum)
+    {
+        if(sum[level]==INT_MIN)
+            sum[level]=val;
+        else
+            sum[level]+=val;
+        
+    }
+    void print(vector<int> levelSum)
+    {
+        for(int i=0;i<levelSum.size();i++)
+            cout<<i<<" "<<levelSum[i]<<endl;
+    }
+    int findLargestSum(vector<int>& sum)
+    {
+        int max=INT_MIN;
+        int index=0;
+        for(int i=0;i<sum.size();i++)
+        {
+            if(sum[i]>max)
+            {
+                max=sum[i];
+                index=i;
+            }
+        }
+        return index;
+    }
+    int maxLevelSum(TreeNode* root) 
+    {
+        int level=0;
+        vector<int> levelSum(100001,INT_MIN);
+        traverse(root,level,levelSum); 
+        return findLargestSum(levelSum);
+    }
+};
