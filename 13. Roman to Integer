@@ -1,0 +1,28 @@
+class Solution {
+public:
+    int romanToInt(string s) {
+        if(s.size()>15  || s.size()<1)
+            return -1;
+        
+        int res=0;
+    unordered_map <char, int> mp={{'I',1}, {'V',5}, {'X', 10}, {'L', 50}, {'C', 100},        {'D',500}, {'M', 1000}};
+        
+        for(int i=0;i<s.size();i++)
+        {
+            if(mp[s[i]]>=mp[s[i+1]])
+                res+=mp[s[i]];
+            else
+            {
+                if((mp[s[i]]==1 && mp[s[i+1]]==5 || mp[s[i+1]]==10) || (mp[s[i]]==10                 && mp[s[i+1]]==50 || mp[s[i+1]]==100) || (mp[s[i]]==100 &&                            mp[s[i+1]]==500 || mp[s[i+1]]==1000))
+                {
+                    res+=mp[s[i+1]]-mp[s[i]];
+                    i++;
+                }
+                else 
+                    return -1;
+                    
+            }
+        }
+        return res;
+    }
+};
